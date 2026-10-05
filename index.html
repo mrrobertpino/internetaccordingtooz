@@ -494,7 +494,7 @@ $('#next').onclick=()=>{
   state.unlockedMax=Math.max(state.unlockedMax,target);
   state.page=target;
   save();render();scrollTo({top:0,behavior:'smooth'});
-};state.page=Math.min(names.length-1,state.page+1);render();scrollTo({top:0,behavior:'smooth'})};
+};
 $('#unlock').onclick=()=>{
   const target=Math.min(names.length-1,state.page+1);
   const required=PAGE_EXIT_PASSWORDS[state.page];
