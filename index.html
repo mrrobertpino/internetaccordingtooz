@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Internet According to Oz</title>
+<style>
+:root{
+  --navy:#253a54;
+  --navy2:#324b69;
+  --ink:#203047;
+  --muted:#667892;
+  --line:#d7deea;
+  --paper:#eef2f8;
+  --soft:#f3f5fb;
+  --white:#ffffff;
+  --blue:#4e86d8;
+  --green:#34a06e;
+  --red:#df5a4f;
+  --gold:#efc24f;
+  --purple:#8f79d8;
+  --shadow:0 12px 30px rgba(33,53,82,.10);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at top left, #f7dfe5 0, #f7dfe5 14%, transparent 15%),
+    linear-gradient(180deg,#f5f0f6 0%, #eef3f8 32%, #edf2f8 100%);
+  color:var(--ink);
+  font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+main{max-width:1180px;margin:auto;padding:22px}
+header{
+  display:flex;justify-content:space-between;gap:20px;align-items:center;
+  background:var(--navy);
+  color:white;
+  padding:18px 22px;
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  margin-bottom:16px;
+}
+.brand{display:flex;align-items:center;gap:16px}
+.logo{
+  width:62px;height:62px;border-radius:16px;background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--red);font-size:30px;font-weight:900;
+  box-shadow:inset 0 0 0 2px rgba(0,0,0,.05);overflow:hidden
+}
+.logo img{width:100%;height:100%;object-fit:cover;display:block}
+h1{font-size:34px;letter-spacing:-1px;margin:0;color:white;line-height:1}
+h2{font-size:29px;line-height:1.15;margin:0 0 14px;color:var(--navy)}
+h3{margin:22px 0 10px;color:var(--navy2)}
+p{margin:8px 0 16px}
+.muted{color:#d8e0ed}
+.subtitle{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#dbe3f0;font-weight:700}
+.tag{
+  display:inline-block;
+  font-size:12px;text-transform:uppercase;letter-spacing:.14em;
+  color:white;background:var(--purple);font-weight:800;
+  padding:7px 12px;border-radius:999px;margin-bottom:14px
+}
+.card{
+  background:rgba(255,255,255,.96);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
+  box-shadow:var(--shadow)
+}
+.note{
+  background:linear-gradient(180deg,#eef4ff 0%, #f6f8ff 100%);
+  border:1px solid #d6e2fb;
+  border-radius:16px;padding:14px 16px;margin:16px 0
+}
+.paper{
+  background:#fffdf5;
+  border:2px dashed #e0c86d;
+  border-radius:16px;padding:16px;margin:16px 0
+}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+nav button{
+  border:0;border-radius:14px;padding:10px 14px;
+  color:white;font-size:12px;font-weight:800;
+  box-shadow:0 4px 0 rgba(0,0,0,.10);
+  cursor:pointer
+}
+nav button:nth-child(6n+1){background:var(--green)}
+nav button:nth-child(6n+2){background:var(--red)}
+nav button:nth-child(6n+3){background:var(--blue)}
+nav button:nth-child(6n+4){background:var(--gold);color:#483200}
+nav button:nth-child(6n+5){background:var(--purple)}
+nav button:nth-child(6n+6){background:#5f6f89}
+nav button[aria-current="step"]{
+  outline:3px solid #1d2d44;
+  transform:translateY(1px)
+}
+button,a.launch{
+  border:0;border-radius:14px;background:var(--blue);color:white;
+  padding:11px 16px;font-weight:800;text-decoration:none;display:inline-block;cursor:pointer;
+  box-shadow:0 4px 0 rgba(0,0,0,.12)
+}
+button.secondary{background:#e7edf6;color:var(--ink);box-shadow:none}
+button:disabled{opacity:.45;cursor:not-allowed}
+textarea,input,select{
+  font:inherit;border:1px solid #b8c5d8;border-radius:12px;padding:10px 12px;
+  background:#fbfcff;color:var(--ink)
+}
+textarea,input{width:100%}
+select{width:100%}
+textarea{min-height:95px;resize:vertical}
+textarea:focus,input:focus,select:focus{
+  outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(78,134,216,.18)
+}
+label{display:block;font-weight:750;margin:18px 0 7px}
+.footer{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  margin-top:26px;flex-wrap:wrap;padding-top:6px
+}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.diagram{
+  background:linear-gradient(180deg,#f8fbff 0%, #f3f7fd 100%);
+  border:1px solid var(--line);border-radius:18px;padding:20px;margin:16px 0
+}
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;text-align:center}
+.node{
+  background:white;border:2px solid #b8c6db;border-radius:14px;padding:12px 14px;
+  min-width:112px;font-weight:800;box-shadow:0 3px 0 rgba(0,0,0,.05)
+}
+.arrow{font-size:24px;color:var(--muted)}
+.prompt{
+  border-left:6px solid var(--purple);
+  background:#faf7ff;
+  border-radius:12px;
+  padding:14px 16px;margin:18px 0
+}
+.checks label{
+  font-weight:500;margin:8px 0;background:#f7f9fd;border:1px solid #e2e8f2;
+  border-radius:12px;padding:10px 12px
+}
+.checks input{width:auto;margin-right:8px}
+.explore{border:1px solid var(--line);border-radius:16px;padding:18px;margin:16px 0}
+.explore h3{margin-top:0}
+.badge{
+  display:inline-block;background:var(--gold);color:#4a3800;
+  padding:5px 10px;border-radius:999px;font-size:12px;font-weight:900
+}
+section[hidden]{display:none}
+.status{
+  font-size:13px;color:#203047;background:#f6fbf8;border-radius:999px;
+  padding:9px 14px;font-weight:800;white-space:nowrap
+}
+@media(max-width:860px){
+  .grid2{grid-template-columns:1fr}
+  main{padding:14px}
+  .card{padding:18px}
+  header{padding:16px;align-items:flex-start}
+  .brand{align-items:flex-start}
+  h1{font-size:30px}
+}
+
+.gate{margin-top:20px;background:#fff7df;border:1px solid #ecd48b;border-radius:16px;padding:16px}
+.gate p{margin:5px 0 12px;color:#6d5a2c}
+.gate-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.gate-row input{flex:1;min-width:190px}
+.gate-feedback{font-size:13px;font-weight:800;margin-top:8px;color:#8b4c00}
+
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="brand">
+    <div class="logo"><img src="oz_internet_logo.png" alt="Oz logo"></div>
+    <div>
+      <h1>the internet according to oz</h1>
+      <div class="subtitle">sit. stay. site.</div>
+      <div class="muted">What is the Internet, and what does it actually look like?</div>
+    </div>
+  </div>
+  <div class="status" id="saveState">Autosave ready</div>
+</header>
+
+<nav id="nav"></nav>
+
+<div class="card">
+<div class="tag" id="tag"></div>
+
+<section data-page="0">
+  <h2>Do Now: Draw the Internet</h2>
+  <div class="paper">
+    <b>Complete these questions on today’s worksheet.</b>
+  </div>
+  <div class="prompt">
+    <p><b>Draw what you think the Internet actually looks like.</b></p>
+    <p>There is no wrong answer. Include anything you think belongs in the picture: computers, phones, websites, Wi-Fi, wires, servers, satellites, clouds, buildings, or anything else.</p>
+  </div>
+  <p><b>Explain your drawing. What did you include, and why?</b></p>
+  <p><b>What part of your drawing are you least sure about?</b></p>
+</section>
+
+<section data-page="1" hidden>
+  <h2>Networks</h2>
+  <div class="note"><b>Use this page while we go through the slides.</b> Some questions are predictions. Some have more than one reasonable answer.</div>
+
+  <h3>Which of these could still be a network if the Internet went down?</h3>
+  <div class="checks">
+    <label><input type="checkbox" data-check="netSchool"> A school with computers connected to the same local network</label>
+    <label><input type="checkbox" data-check="netHome"> A home with a laptop, phone, and printer connected locally</label>
+    <label><input type="checkbox" data-check="netDisconnected"> A single unplugged computer with no connections</label>
+  </div>
+
+  <label>Why can a local network still exist even if it cannot reach the wider Internet?</label>
+  <textarea data-key="networkWhy"></textarea>
+
+  <h3>Ways devices can connect</h3>
+  <p>Select every method that can connect devices into a network.</p>
+  <div class="checks">
+    <label><input type="checkbox" data-check="wifi"> Wi-Fi</label>
+    <label><input type="checkbox" data-check="ethernet"> Ethernet</label>
+    <label><input type="checkbox" data-check="bluetooth"> Bluetooth</label>
+    <label><input type="checkbox" data-check="radio"> Radio / wireless signals</label>
+  </div>
+</section>
+
+<section data-page="2" hidden>
+  <h2>The Internet: Networks Connecting to Networks</h2>
+  <div class="note">The Internet is not one giant machine. It is many independently operated networks connected together.</div>
+
+  <h3>Which statement is closest to what we mean by “the Internet”?</h3>
+  <div class="checks">
+    <label><input type="radio" name="internetModel" value="place" data-key-radio="internetModel"> A giant place where websites are stored</label>
+    <label><input type="radio" name="internetModel" value="machine" data-key-radio="internetModel"> One enormous computer that everyone connects to</label>
+    <label><input type="radio" name="internetModel" value="networks" data-key-radio="internetModel"> Many networks connected to other networks</label>
+    <label><input type="radio" name="internetModel" value="wifi" data-key-radio="internetModel"> All of the world’s Wi-Fi signals combined</label>
+  </div>
+
+  <label>Why is “network of networks” a useful description?</label>
+  <textarea data-key="networkOfNetworks"></textarea>
+
+  <label>What is one thing the Internet is <i>not</i>?</label>
+  <textarea data-key="internetNot"></textarea>
+</section>
+
+<section data-page="3" hidden>
+  <h2>Wi-Fi Is Not the Internet</h2>
+  <div class="note">Wi-Fi is one way a device connects wirelessly to a nearby network. That local network can then connect outward to the Internet.</div>
+
+  <div class="prompt"><b>Scenario:</b> Your Chromebook shows full Wi-Fi bars, but no websites load.</div>
+
+  <h3>Which of these could explain what is happening?</h3>
+  <div class="checks">
+    <label><input type="checkbox" data-check="wifiLocalWorks"> The Chromebook may still be connected to the local network</label>
+    <label><input type="checkbox" data-check="wifiISPDown"> The connection from the local network to the ISP may be down</label>
+    <label><input type="checkbox" data-check="wifiSiteDown"> The website you are trying to reach may be down</label>
+    <label><input type="checkbox" data-check="wifiImpossible"> This is impossible because Wi-Fi and Internet are the same thing</label>
+  </div>
+
+  <label>Explain the difference between being connected to Wi-Fi and being connected to the Internet.</label>
+  <textarea data-key="wifiExplain"></textarea>
+</section>
+
+<section data-page="4" hidden>
+  <h2>ISPs, Large Networks, and the Physical Internet</h2>
+  <div class="note">Your local network connects outward through an Internet Service Provider (ISP). ISPs and other large networks connect to still more networks. Some of those networks span cities, countries, or continents.</div>
+
+  <h3>Put these in a reasonable order from your device outward.</h3>
+  <p><b>Your device →</b></p>
+  <div class="grid2">
+    <select data-key="order1">
+      <option value="">Next...</option>
+      <option>Local network / router</option>
+      <option>ISP</option>
+      <option>Larger networks / backbone</option>
+      <option>Destination server</option>
+    </select>
+    <select data-key="order2">
+      <option value="">Then...</option>
+      <option>Local network / router</option>
+      <option>ISP</option>
+      <option>Larger networks / backbone</option>
+      <option>Destination server</option>
+    </select>
+    <select data-key="order3">
+      <option value="">Then...</option>
+      <option>Local network / router</option>
+      <option>ISP</option>
+      <option>Larger networks / backbone</option>
+      <option>Destination server</option>
+    </select>
+    <select data-key="order4">
+      <option value="">Finally...</option>
+      <option>Local network / router</option>
+      <option>ISP</option>
+      <option>Larger networks / backbone</option>
+      <option>Destination server</option>
+    </select>
+  </div>
+
+  <h3>The Internet is physical</h3>
+  <p>Select everything that can physically carry or support Internet traffic.</p>
+  <div class="checks">
+    <label><input type="checkbox" data-check="physFiber"> Fiber-optic cables</label>
+    <label><input type="checkbox" data-check="physRouters"> Routers and network equipment</label>
+    <label><input type="checkbox" data-check="physSubmarine"> Submarine cables</label>
+    <label><input type="checkbox" data-check="physServers"> Servers and data centers</label>
+    <label><input type="checkbox" data-check="physSatellite"> Satellites</label>
+  </div>
+
+  <label>Which part of the Internet do people most often forget is physical? Why?</label>
+  <textarea data-key="physicalReflection"></textarea>
+
+  <label>Where do a website’s files and services actually run or live?</label>
+  <textarea data-key="websiteLives"></textarea>
+</section>
+
+<section data-page="5" hidden>
+  <span class="badge">Exploration 1</span>
+  <h2>Internet Map: Find your corner of the web</h2>
+  <p>Open the map in a new tab. Search for one website or service that is part of your own life, then find a second site that looks noticeably different on the map.</p>
+  <a class="launch" target="_blank" rel="noopener" href="https://internet-map.net/">Open Internet Map ↗</a>
+  <label>What two sites did you choose?</label>
+  <textarea data-key="mapSites"></textarea>
+  <label>How do their size, neighbors, or surrounding clusters differ?</label>
+  <textarea data-key="mapCompare"></textarea>
+  <label>Find one connection or nearby site that surprised you. Why?</label>
+  <textarea data-key="mapSurprise"></textarea>
+</section>
+
+<section data-page="6" hidden>
+  <span class="badge">Exploration 2</span>
+  <h2>KMCD: Watch the Internet grow</h2>
+  <p><b>Start at the earliest year and play the entire timeline.</b> Do not skip ahead. Watch for changes in pattern.</p>
+  <a class="launch" target="_blank" rel="noopener" href="https://map.kmcd.dev/?year=2025">Open KMCD Map ↗</a>
+  <label>What changed most dramatically as the timeline played?</label>
+  <textarea data-key="kmcdChange"></textarea>
+  <label>Did growth appear evenly distributed around the world? What evidence did you notice?</label>
+  <textarea data-key="kmcdDistribution"></textarea>
+  <label>What question did the animation make you want to ask?</label>
+  <textarea data-key="kmcdQuestion"></textarea>
+</section>
+
+<section data-page="7" hidden>
+  <span class="badge">Exploration 3</span>
+  <h2>Submarine cables: Who is well connected?</h2>
+  <p>Find one region that appears to have many cable connections and one region that appears to have relatively few.</p>
+  <a class="launch" target="_blank" rel="noopener" href="https://www.submarinecablemap.com/">Open Submarine Cable Map ↗</a>
+  <label>What two places or regions did you choose?</label>
+  <textarea data-key="cablePlaces"></textarea>
+  <label>What geographic, economic, political, or population-related reasons might help explain the difference?</label>
+  <textarea data-key="cableWhy"></textarea>
+  <label>What disadvantages might come with having fewer international cable connections?</label>
+  <textarea data-key="cableImplications"></textarea>
+</section>
+
+<section data-page="8" hidden>
+  <span class="badge">Exploration 4</span>
+  <h2>Opte: What does a network look like?</h2>
+  <p>This visualization is different from the others. Spend a minute looking before answering.</p>
+  <a class="launch" target="_blank" rel="noopener" href="https://www.opte.org/the-internet/">Open Opte ↗</a>
+  <label>What do you think this visualization is showing?</label>
+  <textarea data-key="opteShows"></textarea>
+  <label>How is it different from the other three maps?</label>
+  <textarea data-key="opteDifferent"></textarea>
+  <label>Does its shape remind you of any other image, system, or structure you have seen before?</label>
+  <textarea data-key="opteResemble"></textarea>
+  <label>Do you have any thoughts about why very different systems might produce similar-looking patterns?</label>
+  <textarea data-key="opteMeaning"></textarea>
+</section>
+
+<section data-page="9" hidden>
+  <h2>Extension: Go deeper</h2>
+  <p>If you finish early, revisit any of the four explorations and answer one or more of these.</p>
+  <div class="grid2">
+    <a class="launch" target="_blank" rel="noopener" href="https://internet-map.net/">Internet Map ↗</a>
+    <a class="launch" target="_blank" rel="noopener" href="https://map.kmcd.dev/?year=2025">KMCD ↗</a>
+    <a class="launch" target="_blank" rel="noopener" href="https://www.submarinecablemap.com/">Submarine Cables ↗</a>
+    <a class="launch" target="_blank" rel="noopener" href="https://www.opte.org/the-internet/">Opte ↗</a>
+  </div>
+  <label>Which two visualizations seem most different? How can both still be accurate?</label>
+  <textarea data-key="ext1"></textarea>
+  <label>What important part of the Internet do none of these visualizations show particularly well?</label>
+  <textarea data-key="ext2"></textarea>
+  <label>If you created a fifth map of the Internet, what would you map?</label>
+  <textarea data-key="ext3"></textarea>
+</section>
+
+<section data-page="10" hidden>
+  <h2>Exit Ticket: Draw the Internet Again</h2>
+  <div class="paper">
+    <b>Complete the Exit Ticket on today’s worksheet.</b>
+  </div>
+  <div class="prompt">
+    <p><b>Draw the Internet again using what you understand now.</b></p>
+    <p>Do not directly copy one of the maps from today. Draw your own model of how you think the Internet works.</p>
+  </div>
+  <p><b>What changed between your first drawing and your final drawing? Why did you make those changes?</b></p>
+  <p><b>Where does a website actually exist, and how does your device reach it?</b></p>
+</section>
+
+<section data-page="11" hidden>
+  <h2>Submit</h2>
+  <p>Enter your name, review your work, then submit or download a backup.</p>
+  <label>Your name</label>
+  <input data-key="name" id="name" placeholder="First and last name">
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+    <button id="submit" type="button">Submit to Firebase</button>
+    <button id="download" class="secondary" type="button">Download backup (.txt)</button>
+  </div>
+  <p class="status" id="submitStatus">Prototype: Firebase connection is not wired yet.</p>
+</section>
+
+
+<div id="gate" class="gate" hidden>
+  <b>Teacher password required</b>
+  <p>Enter the password your teacher gives you to continue.</p>
+  <div class="gate-row">
+    <input id="password" type="password" autocomplete="off" placeholder="Password">
+    <button id="unlock" type="button">Unlock next page</button>
+  </div>
+  <div id="gateFeedback" class="gate-feedback" role="status"></div>
+</div>
+
+<div class="footer">
+  <button class="secondary" id="back">← Back</button>
+  <span class="muted" id="progress"></span>
+  <button id="next">Continue →</button>
+</div>
+</div>
+</main>
+
+<script>
+const KEY='internet-lab-prototype-v1';
+const PAGE_EXIT_PASSWORDS = {
+  0:'germany',
+  1:'texas',
+  2:'illinois',
+  3:'michigan',
+  4:'maryland',
+  9:'missouri',
+  10:'new york'
+};
+const names=['Do Now','Networks','Network of Networks','Wi-Fi','ISPs + Physical Internet','Internet Map','KMCD','Submarine Cables','Opte','Extension','Exit Ticket','Submit'];
+let state={page:0,answers:{},unlockedMax:0};
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s)state={...state,...s}; if(!Number.isInteger(state.unlockedMax)) state.unlockedMax=0}catch(e){}
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function save(){
+  $$('[data-key]').forEach(el=>state.answers[el.dataset.key]=el.value);
+  $$('[data-check]').forEach(el=>state.answers['check:'+el.dataset.check]=el.checked);
+  $$('[data-key-radio]').forEach(el=>{if(el.checked)state.answers['radio:'+el.dataset.keyRadio]=el.value});
+  localStorage.setItem(KEY,JSON.stringify(state));
+  $('#saveState').textContent='Saved in this browser';
+}
+function render(){
+  $$('section[data-page]').forEach(s=>s.hidden=Number(s.dataset.page)!==state.page);
+  $('#tag').textContent='Step '+(state.page+1)+' / '+names.length;
+  $('#progress').textContent=names[state.page];
+  $('#back').disabled=state.page===0;
+  $('#next').hidden=state.page===names.length-1;
+  $('#gate').hidden=true;
+  $('#password').value='';
+  $('#gateFeedback').textContent='';
+  $('#nav').innerHTML='';
+  names.forEach((n,i)=>{
+    const b=document.createElement('button');
+    b.textContent=(i+1)+' '+n;
+    if(i===state.page)b.setAttribute('aria-current','step');
+    b.disabled=i>state.unlockedMax;
+    b.onclick=()=>{
+      if(i>state.unlockedMax)return;
+      save();state.page=i;localStorage.setItem(KEY,JSON.stringify(state));
+      render();scrollTo({top:0,behavior:'smooth'});
+    };
+    $('#nav').append(b);
+  });
+  $$('[data-key]').forEach(el=>{el.value=state.answers[el.dataset.key]||''});
+  $$('[data-check]').forEach(el=>{el.checked=!!state.answers['check:'+el.dataset.check]});
+  $$('[data-key-radio]').forEach(el=>{el.checked=state.answers['radio:'+el.dataset.keyRadio]===el.value});
+}
+$$('[data-key]').forEach(el=>el.addEventListener('input',save));
+$$('[data-check],[data-key-radio]').forEach(el=>el.addEventListener('change',save));
+$('#back').onclick=()=>{save();state.page=Math.max(0,state.page-1);render();scrollTo({top:0,behavior:'smooth'})};
+$('#next').onclick=()=>{
+  save();
+  const target=Math.min(names.length-1,state.page+1);
+  if(target===state.page)return;
+
+  const required=PAGE_EXIT_PASSWORDS[state.page];
+  if(required){
+    $('#gate').hidden=false;
+    $('#password').focus();
+    return;
+  }
+
+  state.unlockedMax=Math.max(state.unlockedMax,target);
+  state.page=target;
+  save();render();scrollTo({top:0,behavior:'smooth'});
+};state.page=Math.min(names.length-1,state.page+1);render();scrollTo({top:0,behavior:'smooth'})};
+$('#unlock').onclick=()=>{
+  const target=Math.min(names.length-1,state.page+1);
+  const required=PAGE_EXIT_PASSWORDS[state.page];
+  const entered=($('#password').value||'').trim().toLowerCase();
+  if(required && entered===required){
+    state.unlockedMax=Math.max(state.unlockedMax,target);
+    state.page=target;
+    save();render();scrollTo({top:0,behavior:'smooth'});
+  }else{
+    $('#gateFeedback').textContent='That password is not correct.';
+  }
+};
+$('#password').addEventListener('keydown',e=>{if(e.key==='Enter')$('#unlock').click()});
+
+$('#download').onclick=()=>{
+  save();
+  const rows=Object.entries(state.answers).map(([k,v])=>k.toUpperCase()+'\n'+v).join('\n\n');
+  const blob=new Blob(['INTERNET LAB\n\n'+rows],{type:'text/plain'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=((state.answers.name||'student').replace(/[^a-z0-9_-]+/gi,'_'))+'_internet_lab.txt';
+  document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+$('#submit').onclick=()=>{$('#submitStatus').textContent='Firebase is not connected in this prototype yet.'};
+render();save();
+</script>
+</body>
+</html>
